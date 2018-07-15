@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const mainRoutes = require('./routes/main-routes');
 const apiRoutes = require('./routes/api');
+const settingsRoutes = require('./routes/settings');
 
 /****
 
@@ -45,3 +46,4 @@ ROUTERS
 
 app.use('/', mainRoutes);
 app.use('/api', apiRoutes);
+app.use('/settings', settingsRoutes);
