@@ -1,0 +1,39 @@
+{
+  "name": "mail-app",
+  "version": "1.0.0",
+  "description": "serve API to send mails from shopify store",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "co": "^4.6.0",
+    "co-express": "^1.2.2",
+    "cors": "^2.8.1",
+    "dateformat": "^2.0.0",
+    "ejs": "^2.5.5",
+    "express": "^4.14.1",
+    "express-yields": "^1.0.2",
+    "fs": "0.0.1-security",
+    "html-to-text": "^3.0.0",
+    "jade": "^1.11.0",
+    "mongoose": "^4.6.5",
+    "mongoose-findorcreate": "^0.1.2",
+    "monk": "^3.1.2",
+    "node-schedule": "^1.2.0",
+    "path": "^0.12.7",
+    "promise": "^7.1.1",
+    "sendgrid": "^4.7.1",
+    "shopify-node-api": "^1.7.2"
+  },
+  "engines": {
+    "node": "6.11.1"
+  },
+  "devDependencies": {
+    "request": "^2.76.0",
+    "thunkify": "^2.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "intellisys",
+  "license": "ISC"
+}

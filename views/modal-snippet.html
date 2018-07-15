@@ -1,0 +1,192 @@
+<style>
+  #simpleModal.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999999999;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #simpleModal .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 8px 16px;
+    max-width: 670px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+
+  @-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+
+
+  #simpleModal .modal-header .close {
+    color: #666;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #simpleModal .modal-header .close:hover,
+  #simpleModal .modal-header .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #simpleModal .modal-header {
+    padding: 8px;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    border-bottom: 1px solid #eed;
+  }
+
+  #simpleModal .modal-header h2 {
+    margin-bottom: 0px;
+  }
+
+  #simpleModal .modal-body {
+    padding: 8px;
+  }
+
+  #simpleModal .modal-footer {
+    text-align: right;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    margin-bottom: 8px;
+  }
+
+  a.form-request-btn,
+  button.form-request-btn {
+    color: #666;
+    background-color: #fff;
+    border: 1px solid;
+    padding: 8px 16px;
+    margin-top: 1rem;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  a.form-request-btn.open-form,
+  #simpleModal .form-request-btn.submit-btn {
+    color: #fff;
+    background-color: #aaac1e;
+    border: 1px solid #aaac1e;
+    font-weight: bold;
+  }
+
+  a.form-request-btn.open-form:hover,
+  #simpleModal .form-request-btn.submit-btn:hover {
+    background: #b2b434;
+    border: 1px solid #b2b434;
+  }
+
+  a.form-request-btn.open-form {
+    width: 100%;
+    padding: 0.875rem 1.75rem;
+    display: inline-block;
+    text-align: center;
+  }
+
+  p.form-request-text {
+    text-align: center;
+  }
+
+  p.form-request-text.bold {
+    font-weight: bold;
+  }
+
+  #simpleModal .form-group {
+    padding: 8px;
+  }
+
+  #simpleModal .form-group label {
+    width: 20%;
+    display: inline-block;
+  }
+
+  #simpleModal .form-group input,
+  #simpleModal .form-group textarea {
+    padding: 8px;
+    width: 75%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+  }
+
+  @media (max-width: 767px) {
+    #simpleModal .form-group label {
+      display: block;
+    }
+
+    #simpleModal .form-group input {
+      width: 90%;
+    }
+  }
+
+</style>
+
+<div id="simpleModal" class="modal modal-background">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Request Price Form</h2>
+    </div>
+    <div class="modal-body">
+
+    </div>
+    <div class="modal-footer">
+      <button class="close form-request-btn">cancel</button>
+      <button class="form-request-btn submit-btn">Submit</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  $('#simpleModal').on('click', function(e){
+    if($(e.target).hasClass('modal-background')) {
+      $(this).hide();
+    }
+  });
+
+  $('#simpleModal .close').on('click', function(e){
+    $('#simpleModal').hide();
+  });
+
+  $('a.form-request-btn.open-form').on('click', function(e){
+    e.preventDefault()
+    $('#simpleModal').show();
+  });
+
+  $('#simpleModal .submit-btn').on('click', function(e){
+    $('#simpleModal').hide();
+
+
+  });
+</script>

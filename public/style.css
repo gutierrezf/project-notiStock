@@ -1,0 +1,13 @@
+.install-form {
+  background-color: #cccccc;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.install-form input {
+  width: 80%;
+  min-width: 70px;
+  display: inline-block;
+  margin: 0px 8px;
+}
+

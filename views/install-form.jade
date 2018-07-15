@@ -1,0 +1,8 @@
+extends template
+block content
+  form
+    div.install-form
+      label(for='shop') Shop Name
+      input.form-control(id='shop',type='text',value='', placeholder='Shop Name', name='shop')
+      button.btn.btn-primary(onclick='submitShop()') submit
+      
