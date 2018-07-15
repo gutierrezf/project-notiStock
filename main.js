@@ -4,11 +4,13 @@ const Promise = require('promise');
 const MailHelper = require('sendgrid').mail;
 const SendGrid = require('sendgrid')(constants.SENDGRID_API_KEY);
 const ShopModel = require('./model/shop');
+const RestockModel = require('./model/restock');
 
 const mailer = {};
 const service = {};
 const db = {
-  shop: ShopModel.ShopInterface
+  shop: ShopModel.ShopInterface,
+  restock: RestockModel.RestockInterface
 };
 
 exports.mailer = mailer;

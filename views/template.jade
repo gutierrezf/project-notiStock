@@ -5,6 +5,31 @@ html
     link(rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css")
     link(rel="stylesheet" href="/public/font-awesome-4.7.0/css/font-awesome.min.css")
     link(rel="stylesheet" href="/public/style.css")
+
+    script(src="https://cdn.shopify.com/s/assets/external/app.js")
+    script(type='text/javascript').
+      ShopifyApp.init({
+        apiKey: 'acd8d98e6132baa18eb59c81c5faa521',
+        shopOrigin: 'https://#{shopName}.myshopify.com'
+      });
+
+    script(type='text/javascript').
+      ShopifyApp.ready(function(){
+        ShopifyApp.Bar.initialize({
+          icon: '/public/ghimicelli_icon.png',
+          title: 'Ghimicelli Restock App',
+          buttons: {
+            primary: {
+              label: 'Save',
+              message: 'save',
+              callback: function(){
+                ShopifyApp.Bar.loadingOn();
+              }
+            }
+          }
+        });
+      });
+
   body(data-shop='#{shopName}')
     .container
       block content
