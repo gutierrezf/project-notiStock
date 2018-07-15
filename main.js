@@ -49,7 +49,7 @@ mailer.send = function (to, subject, body) {
   });
 };
 
-function getRandomCode (length) {
+function getRandomCode () {
   let text = '';
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   for (let i = 0; i < 20; i += 1) {

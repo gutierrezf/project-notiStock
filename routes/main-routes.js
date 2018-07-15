@@ -16,7 +16,7 @@ router.use((req, res, next) => {
 
 ****/
 
-router.get('/', co(function * (req, res, next) {
+router.get('/', co(function * (req, res) {
   const { shop } = req.query;
 
   if (!shop) {
@@ -39,7 +39,7 @@ router.get('/', co(function * (req, res, next) {
  INSTALL APP
 
 ****/
-router.get('/install', co(function * (req, res, next) {
+router.get('/install', co(function * (req, res) {
   // check for empty shop query???
   const shopName = req.query.shop;
 
@@ -59,7 +59,7 @@ router.get('/install', co(function * (req, res, next) {
  AUTHENTICATE CALLBACK
 
 ****/
-router.get('/authenticate', co(function * (req, res, next) {
+router.get('/authenticate', co(function * (req, res) {
   const token = yield provider.service.fetchAuthToken(req.query);
   const { shop } = req.query;
   const shopName = shop.split('.')[0];
@@ -75,7 +75,7 @@ router.get('/authenticate', co(function * (req, res, next) {
 
 ****/
 
-router.get('/new', (req, res, next) => {
+router.get('/new', (req, res) => {
   const shopName = req.query.shop;
 
   if (shopName) {

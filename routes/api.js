@@ -8,7 +8,7 @@ const path = require('path');
 const router = express.Router();
 const emailTemplate = fs.readFileSync(path.join(__dirname, '/../views/mail-template.jade'), 'utf8');
 
-router.post('/price-submit', co(function * (req, res, next) {
+router.post('/notify-request', co(function * (req, res) {
   const shopName = req.query.shop;
   const formData = req.body;
   const html = jade.compile(emailTemplate, { basedir: __dirname })({ formData });
@@ -31,31 +31,7 @@ router.post('/price-submit', co(function * (req, res, next) {
   res.send('ok');
 }));
 
-router.post('/add-contractors', (req, res, next) => {
-  const data = JSON.parse(req.body.json);
-  data.map(clientData => provider.db.contractor.findOrCreate(clientData));
-
-  res.send('ok');
-});
-
-router.get('/contractors', co(function * (req, res, next) {
-  const { query } = req;
-  console.log(query);
-  let data = yield provider.db.contractor.find(query);
-  data = data.map((item, index) => ({
-    index,
-    name: item.name,
-    email: item.email,
-    phone: item.phone,
-    address: item.address,
-    website: item.website,
-    source: item.source
-  }));
-
-  res.send(JSON.stringify(data));
-}));
-
-router.get('/email-view-test', (req, res, next) => {
+router.get('/preview', (req, res) => {
   const formData = {
     'product-id': '766583472224',
     'product-title': 'AC1321',
