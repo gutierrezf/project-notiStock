@@ -7,3 +7,5 @@ router.get('/', (req, res) => {
 
   res.render('settings', { shopName });
 });
+
+module.exports = router;
