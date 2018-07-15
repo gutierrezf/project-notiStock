@@ -1,4 +1,23 @@
 extends template
+ 
+block headerBar
+  script(type='text/javascript').
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({
+        icon: '/public/ghimicelli_icon.png',
+        title: '',
+        buttons: {
+          primary: {
+            label: 'Settings',
+            message: 'settings',
+            callback: function(){
+              ShopifyApp.Bar.loadingOn();
+              location.pathname = '/settings?shop=#{shopName}'
+            }
+          }
+        }
+      });
+    });
 
 block content
   h4 homepage
