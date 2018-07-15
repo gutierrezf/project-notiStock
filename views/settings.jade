@@ -1,0 +1,23 @@
+extends template
+ 
+block headerBar
+  script(type='text/javascript').
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({
+        icon: '/public/ghimicelli_icon.png',
+        title: 'settings',
+        buttons: {
+          primary: {
+            label: 'Save',
+            message: 'save',
+            callback: function(){
+              ShopifyApp.Bar.loadingOn();
+              location.pathname = '/?#{shopName}'
+            }
+          }
+        }
+      });
+    });
+
+block content
+  h4 settings
