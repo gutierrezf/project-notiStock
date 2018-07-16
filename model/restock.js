@@ -9,7 +9,8 @@ const RestockSchema = new Schema({
   product_id: { type: String, default: '' },
   variant: { type: String, default: '' },
   email: { type: String, default: '' },
-  status: { type: Number, enum: [0, 1], default: 0 },
+  image_url: { type: String, default: '' },
+  status: { type: Number, enum: [0, 1, 2], default: 0 },
   created_at: { type: Date, default: Date.now }
 });
 

@@ -1,5 +1,5 @@
 extends template
- 
+
 block headerBar
   script(type='text/javascript').
     ShopifyApp.ready(function(){
@@ -10,9 +10,9 @@ block headerBar
           primary: {
             label: 'Save',
             message: 'save',
+            href: '/',
             callback: function(){
               ShopifyApp.Bar.loadingOn();
-              location.pathname = '/'
             }
           }
         }
@@ -20,4 +20,5 @@ block headerBar
     });
 
 block content
-  h4 settings
+  .container
+

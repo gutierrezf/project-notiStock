@@ -32,15 +32,13 @@ router.post('/notify-request', co(function * (req, res) {
 }));
 
 router.get('/preview', (req, res) => {
-  const formData = {
-    'product-id': '766583472224',
-    'product-title': 'AC1321',
-    fullname: 'name test',
-    email: 'email@test.com',
-    message: 'atalog Number AC1321, Brand General Electric, Bus Plugs Fusible , Volts 240, Amps 30, Ground Stab No.'
+  const data = {
+    productImage: 'http://via.placeholder.com/250x300/ffffff/000000?text=productplaceholder',
+    promoImage: 'http://via.placeholder.com/500x80/e8117f/ffffff?text=promo',
+    promoLink: 'https://www.google.com/'
   };
 
-  const html = jade.compile(emailTemplate, { basedir: __dirname })({ formData });
+  const html = jade.compile(emailTemplate, { basedir: __dirname })({ data });
   res.send(html);
 });
 

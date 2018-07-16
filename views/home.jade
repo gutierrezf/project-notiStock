@@ -10,9 +10,9 @@ block headerBar
           primary: {
             label: 'Settings',
             message: 'settings',
+            href: '/settings',
             callback: function(){
               ShopifyApp.Bar.loadingOn();
-              location.pathname = '/settings'
             }
           }
         }
@@ -20,4 +20,5 @@ block headerBar
     });
 
 block content
-  h4 homepage
+  .container
+    h4 homepage
