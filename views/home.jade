@@ -1,5 +1,5 @@
 extends template
- 
+
 block headerBar
   script(type='text/javascript').
     ShopifyApp.ready(function(){
@@ -22,3 +22,5 @@ block headerBar
 block content
   .container
     h4 homepage
+
+    a(href="/api/preview") preview email template

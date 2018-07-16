@@ -13,10 +13,13 @@ html
 
             img(src="#{data.productImage}" style="max-width: 100%;height: auto;")
 
-            div(style='text-align:left;padding-top:12px;')
-              p In the meantime, while you wait patienly here is a credict store* as a tokenof our appreciation. Credict Store will spire in 7 days.
+            if data.promoLink && data.promoImage
+              div(style='text-align:left;padding-top:12px;')
+                p In the meantime, while you wait patienly here is a credict store* as a tokenof our appreciation. Credict Store will spire in 7 days.
 
-            a(href="#{data.promoLink}")
-              img(src="#{data.promoImage}" style="max-width: 100%;height: auto;")
+              a(href="#{data.promoLink}")
+                img(src="#{data.promoImage}" style="max-width: 100%;height: auto;")
+            else
+              div(style="padding-top: 30px;")
 
             h3 MICHAEL GHIMICELLI
