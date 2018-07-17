@@ -10,7 +10,7 @@ block headerBar
           primary: {
             label: 'Settings',
             message: 'settings',
-            href: '/settings',
+            href: '/settings?shop=#{shopName}',
             callback: function(){
               ShopifyApp.Bar.loadingOn();
             }
