@@ -1,0 +1,19 @@
+include app.jade
+
+script(type='text/javascript').
+  ShopifyApp.ready(function(){
+    ShopifyApp.Bar.initialize({
+      icon: '/public/ghimicelli_icon.png',
+      title: 'Settings',
+      buttons: {
+        primary: {
+          label: 'Save',
+          message: 'save',
+          callback: function(){
+            ShopifyApp.Bar.loadingOn();
+            saveSettings();
+          }
+        }
+      }
+    });
+  });

@@ -14,7 +14,10 @@ mongoose.connect(constants.DB_URL, {
 const shopSchema = new Schema({
   companyName: String,
   accessToken: { type: String, default: '' },
-  email: [String],
+  email: { type: String, default: '' },
+  storeLogo: { type: String, default: '' },
+  promoLink: { type: String, default: '' },
+  promoImage: { type: String, default: '' },
   uninstalledAt: Date,
   created_at: { type: Date, default: Date.now }
 });

@@ -26,7 +26,9 @@ function saveSettings() {
     data: formData,
     success: function (res) {
       if (res.success) {
-        window.location = '/?shop=' + shop;
+        ShopifyApp.flashNotice("Saved successfully.");
+      } else {
+        ShopifyApp.flashError("ERROR: Could not save successfully.");
       }
     }
   });

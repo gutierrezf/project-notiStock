@@ -119,7 +119,7 @@ Base.delete = function (query) {
       if (err) {
         reject(err);
       }
-      resolve('sucess');
+      resolve(data);
     });
   });
 };
