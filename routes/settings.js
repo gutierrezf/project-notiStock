@@ -15,8 +15,6 @@ router.post('/', (req, res) => {
   const { shopName } = req.body;
   delete req.body.shopName;
 
-  console.log(req.body);
-
   provider.db.shop.updateAll({ companyName: shopName }, req.body )
     .then(() => {
       res.send({ success: true, statusCode: 200 });

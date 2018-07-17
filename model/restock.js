@@ -6,10 +6,11 @@ const { Schema } = mongoose;
 
 const RestockSchema = new Schema({
   shop: String,
-  product_id: { type: String, default: '' },
+  productID: { type: String, default: '' },
+  productUrl: { type: String, default: '' },
   variant: { type: String, default: '' },
   email: { type: String, default: '' },
-  image_url: { type: String, default: '' },
+  imageUrl: { type: String, default: '' },
   status: { type: Number, enum: [0, 1, 2], default: 0 },
   created_at: { type: Date, default: Date.now }
 });

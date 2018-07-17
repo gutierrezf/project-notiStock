@@ -30,6 +30,7 @@ function saveSettings() {
       } else {
         ShopifyApp.flashError("ERROR: Could not save successfully.");
       }
+      ShopifyApp.Bar.loadingOff();
     }
   });
 }

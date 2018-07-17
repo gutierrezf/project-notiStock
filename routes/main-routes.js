@@ -31,7 +31,10 @@ router.get('/', co(function * (req, res) {
     res.redirect(`/install?shop=${shopName}`);
     return;
   }
-  res.render('home', { shopName });
+
+  const notifications = yield provider.db.restock.find({ shop: shopName, status: 0 });
+
+  res.render('home', { shopName, notifications });
 }));
 
 /****

@@ -21,3 +21,12 @@ body {
   border-radius: 10px;
   padding: 16px 12px;
 }
+
+.border-separator {
+  border-bottom: #dfe3e8 1px solid;
+  margin-top: 24px;
+}
+
+.text-bold {
+  font-weight: bold;
+}

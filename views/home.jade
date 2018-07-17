@@ -5,6 +5,26 @@ block headerBar
 
 block content
   .container
-    h4 homepage
+    h4 Pending Request Notifications
+    .border-separator
+      .row
+        .col-md-2
+        .col-md-1
+        .col-md-2
+          span.text-bold Product ID
+        .col-md-2
+          span.text-bold Variant
+        .col-md-4
+          span.text-bold Customer Email
 
-    a(href="/api/preview") preview email template
+    each notification in notifications
+      .row
+        .col-md-2
+          img(src=notification.imageUrl)
+        .col-md-1
+        .col-md-2
+          a(href="#{notification.productUrl}") #{notification.productId}
+        .col-md-2
+          span=notification.variant
+        .col-md-4
+          span=notification.email
