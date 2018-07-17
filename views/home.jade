@@ -1,7 +1,6 @@
 extends template
 
-block headerBar
-  include header/home
+
 
 block content
   .container
@@ -28,3 +27,6 @@ block content
           span=notification.variant
         .col-md-4
           span=notification.email
+
+    if notifications.length == 0
+      p.text-center.text-bold.mt-5vh There are not any requests in queue.
