@@ -11,3 +11,13 @@
   margin: 0px 8px;
 }
 
+body {
+  background-color: #f4f6f8;
+  padding-top: 24px;
+}
+
+.form-group {
+  border: #dfe3e8 1px solid;
+  border-radius: 10px;
+  padding: 16px 12px;
+}

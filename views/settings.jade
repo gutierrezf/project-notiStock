@@ -1,4 +1,6 @@
 extends template
+block vars
+  - var hideNav = false
 
 block headerBar
   script(type='text/javascript').
@@ -10,9 +12,9 @@ block headerBar
           primary: {
             label: 'Save',
             message: 'save',
-            href: '/?shop=#{shopName}',
             callback: function(){
               ShopifyApp.Bar.loadingOn();
+              saveSettings();
             }
           }
         }
@@ -21,4 +23,25 @@ block headerBar
 
 block content
   .container
+    form.settings-form
+      .form-group
+        label(for="email") Admin Email
+        p This email will be used to notify the admin when a customer request a notification
+        input.form-control(type="text" name="email" placeholder="Insert your email" value=settings.email)
+
+      .form-group
+        label(for="storeLogo") Store Logo
+        p This field is used to replace the default logo.
+          img(src=src="/public/ghimicelli_store_icon.png" style="max-width: 100%;height: 30px;padding: 0 8px;")
+        input.form-control(type="text" name="storeLogo" placeholder="Insert a logo url" value=settings.storeLogo)
+
+      .form-group
+        label(for="promoLink") Promo Link
+        p URL where the customer will be directed to ge a store credict.
+        input.form-control(type="text" name="promoLink" placeholder="Insert a promo url" value=settings.promoLink)
+
+        label(for="promoImage" style="padding-top:16px;") Promo Image URL
+        p This field is used to replace the promo image. This Image will be shown only if a promo Link exist.
+          img(src="/public/store_credit.png"  style="max-width: 100%;height: 30px;padding: 0 8px;")
+        input.form-control(type="text" name="promoImage" placeholder="Insert a promo image url" value=settings.promoImage)
 
