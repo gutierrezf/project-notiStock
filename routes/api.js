@@ -34,8 +34,8 @@ router.post('/notify-request', co(function * (req, res) {
 router.get('/preview', (req, res) => {
   const data = {
     productImage: 'http://via.placeholder.com/250x300/ffffff/000000?text=productplaceholder',
-    promoImage: 'http://via.placeholder.com/500x80/e8117f/ffffff?text=promo',
-    promoLink: 'https://www.google.com/'
+    promoLink: 'https://www.google.com/',
+    productLink: 'https://www.google.com/'
   };
 
   const html = jade.compile(emailTemplate, { basedir: __dirname })({ data });

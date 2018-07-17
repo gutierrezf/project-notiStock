@@ -4,22 +4,36 @@ html
     div(style='margin:0 auto;min-width:320px;max-width:500px')
       div(style='border-collapse:collapse;display:table;width:100%')
         div(style='background-color:#8F8F8F;padding: 25px 0 50px 0px;')
-          div(style="background-color:#959CA7;")
-            img(src="http://via.placeholder.com/300x80/e8117f/ffffff?text=Logo" style="max-width: 100%;height: auto;")
-          div(style='padding:0 50px;')
-            div(style='text-align:left')
-              p Hey There,
-              p You Will Receive an email as soon as the item is back in stock, Thank you for your patience!
 
-            img(src="#{data.productImage}" style="max-width: 100%;height: auto;")
-
-            if data.promoLink && data.promoImage
-              div(style='text-align:left;padding-top:12px;')
-                p In the meantime, while you wait patienly here is a credict store* as a tokenof our appreciation. Credict Store will spire in 7 days.
-
-              a(href="#{data.promoLink}")
-                img(src="#{data.promoImage}" style="max-width: 100%;height: auto;")
+          div(style="background-color:#959CA7;padding: 12px 0px;")
+            if data.storeLogo
+              img(src="#{data.storeLogo}" style="max-width: 100%;height: 64px;")
             else
-              div(style="padding-top: 30px;")
+              img(src="/public/ghimicelli_store_icon.png" style="max-width: 100%;height: 64px;")
 
-            h3 MICHAEL GHIMICELLI
+          div(style='padding:0 50px;')
+            div(style='text-align:left;')
+              p Hey There,
+
+              if data.reply
+                p Good news! The Item you requested is now available.
+              else
+                p You will Receive an email as soon as the item is back in stock, Thank you for your patience!
+
+            if data.reply && data.productLink
+              a(href="#{data.productLink}")
+                img(src="#{data.productImage}" style="max-width: 100%;height: auto;")
+            else
+              img(src="#{data.productImage}" style="max-width: 100%;height: auto;")
+
+            div(style='text-align:left;padding-top:30px;')
+              if data.promoLink && !data.reply
+                p In the meantime, while you wait patienly here is a credict store* as a token of our appreciation. Credict Store will spire in 7 days.
+
+                a(href="#{data.promoLink}")
+                  if data.promoImage
+                    img(src="#{data.promoImage}" style="max-width: 100%;height: auto;")
+                  else
+                    img(src="/public/store_credit.png" style="max-width: 100%;height: auto;")
+
+            p(style="letter-spacing:5px;padding-top: 30px;") MICHAEL GHIMICELLI
