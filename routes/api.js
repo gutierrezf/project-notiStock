@@ -9,36 +9,66 @@ const router = express.Router();
 const emailTemplate = fs.readFileSync(path.join(__dirname, '/../views/mail-template.jade'), 'utf8');
 
 router.post('/notify-request', co(function * (req, res) {
-  const shopName = req.query.shop;
   const formData = req.body;
-  const html = jade.compile(emailTemplate, { basedir: __dirname })({ formData });
-  const localShop = yield provider.db.shop.findByName(shopName);
-
-  const emailObj = {
-    to: localShop.email,
-    subject: 'Price Request',
-    body: html
+  const query = {
+    productUrl: formData.productUrl,
+    customerEmail: formData.customerEmail
   };
 
-  provider.mailer.send(emailObj.to, emailObj.subject, emailObj.body)
-    .then(() => {
-      provider.mailer.send({
-        to: [formData.email],
-        subject: 'Price Request Submited',
-        body: '<p>Thank you for your request, one of our sales representatives will be in touch as soon as possible.</p>'
+  const restock = yield provider.db.restock.findOrCreate(query);
+
+  if (restock.created) {
+    provider.db.restock.updateAll(query, formData);
+
+    const shopName = req.body.shop;
+    const localShop = yield provider.db.shop.findByName(shopName);
+
+    const emailTemplateData = {
+      productImage: `https:${formData.imageUrl}`,
+      promoLink: localShop.promoLink,
+      promoImage: localShop.promoImage,
+      storeLogo: localShop.storeLogo,
+    };
+
+    const html = jade.compile(emailTemplate, { basedir: __dirname })({ emailTemplateData });
+
+    const emailObj = {
+      to: [formData.customerEmail],
+      from: 'ghimicelli-restock@service.com',
+      subject: 'Restock Notification Request Submited',
+      body: html
+    };
+
+    provider.mailer.send(emailObj)
+      .then(() => {
+        emailObj.to = [localShop.email];
+        emailObj.from = formData.customerEmail;
+        return provider.mailer.send(emailObj);
       });
-    });
+  }
   res.send('ok');
 }));
 
 router.get('/preview', (req, res) => {
-  const data = {
-    productImage: 'http://via.placeholder.com/250x300/ffffff/000000?text=productplaceholder',
-    promoLink: 'https://www.google.com/',
-    productLink: 'https://www.google.com/'
+  const emailTemplateData = {
+    productImage: 'https://cdn.shopify.com/s/files/1/0629/7769/products/70-Times-7--Shirt--Triblend-drk-gray-on-gray_300x.png?v=1529035427',
+    promoLink: 'www.google.com',
+    promoImage: '',
+    storeLogo: ''
   };
 
-  const html = jade.compile(emailTemplate, { basedir: __dirname })({ data });
+  const html = jade.compile(emailTemplate, { basedir: __dirname })({ emailTemplateData });
+
+  // const emailObj = {
+  //   to: ['ingutierrez.u@gmail.com'],
+  //   from: 'ghimicelli-restock@service.com',
+  //   subject: 'Restock Notification Request Submited - preview',
+  //   body: html
+  // };
+
+  // provider.mailer.send(emailObj.to, emailObj.subject, emailObj.body);
+
+
   res.send(html);
 });
 

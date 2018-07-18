@@ -7,9 +7,10 @@ const { Schema } = mongoose;
 const RestockSchema = new Schema({
   shop: String,
   productID: { type: String, default: '' },
+  productTitle: { type: String, default: '' },
   productUrl: { type: String, default: '' },
   variant: { type: String, default: '' },
-  email: { type: String, default: '' },
+  customerEmail: { type: String, default: '' },
   imageUrl: { type: String, default: '' },
   status: { type: Number, enum: [0, 1, 2], default: 0 },
   created_at: { type: Date, default: Date.now }

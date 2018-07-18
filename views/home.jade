@@ -8,26 +8,30 @@ block content
     h4 Pending Request Notifications
     .border-separator
       .row
-        .col-md-2
+        .col-md-1
         .col-md-1
         .col-md-2
-          span.text-bold Product ID
+          span.text-bold Product Title
         .col-md-2
+          span.text-bold Product ID
+        .col-md-1
           span.text-bold Variant
         .col-md-4
           span.text-bold Customer Email
 
     each notification in notifications
-      .row
-        .col-md-2
-          img(src=notification.imageUrl)
+      .row.flex-row
+        .col-md-1
+          img.img-responsive(src="#{notification.imageUrl}")
         .col-md-1
         .col-md-2
-          a(href="#{notification.productUrl}") #{notification.productId}
+          a(href="#{notification.productUrl}") #{notification.productTitle}
         .col-md-2
+          span=notification.productID
+        .col-md-1
           span=notification.variant
         .col-md-4
-          span=notification.email
+          span=notification.customerEmail
 
     if notifications.length == 0
       p.text-center.text-bold.mt-5vh There are not any requests in queue.

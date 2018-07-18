@@ -16,10 +16,11 @@ Base.findOrCreate = function (queryOptions) {
   const model = this.getModel();
   const query = queryOptions || {};
   return new Promise((resolve, reject) => {
-    model.findOrCreate(query, (err, data) => {
+    model.findOrCreate(query, (err, data, created) => {
       if (err) {
         reject(err);
       } else {
+        data.created = created;
         resolve(data);
       }
     });

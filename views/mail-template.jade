@@ -6,8 +6,8 @@ html
         div(style='background-color:#8F8F8F;padding: 25px 0 50px 0px;')
 
           div(style="background-color:#959CA7;padding: 12px 0px;")
-            if data.storeLogo
-              img(src="#{data.storeLogo}" style="max-width: 100%;height: 64px;")
+            if emailTemplateData.storeLogo && emailTemplateData.storeLogo.length > 0
+              img(src="#{emailTemplateData.storeLogo}" style="max-width: 100%;height: 64px;")
             else
               img(src="/public/ghimicelli_store_icon.png" style="max-width: 100%;height: 64px;")
 
@@ -15,24 +15,24 @@ html
             div(style='text-align:left;')
               p Hey There,
 
-              if data.reply
+              if emailTemplateData.reply
                 p Good news! The Item you requested is now available.
               else
                 p You will Receive an email as soon as the item is back in stock, Thank you for your patience!
 
-            if data.reply && data.productLink
-              a(href="#{data.productLink}")
-                img(src="#{data.productImage}" style="max-width: 100%;height: auto;")
+            if emailTemplateData.reply && emailTemplateData.productLink
+              a(href="#{emailTemplateData.productLink}")
+                img(src="#{emailTemplateData.productImage}" style="max-width: 100%;height: auto;")
             else
-              img(src="#{data.productImage}" style="max-width: 100%;height: auto;")
+              img(src="#{emailTemplateData.productImage}" style="max-width: 100%;height: auto;")
 
             div(style='text-align:left;padding-top:30px;')
-              if data.promoLink && !data.reply
+              if emailTemplateData.promoLink && emailTemplateData.promoLink.length > 0 && !emailTemplateData.reply
                 p In the meantime, while you wait patienly here is a credict store* as a token of our appreciation. Credict Store will spire in 7 days.
 
-                a(href="#{data.promoLink}")
-                  if data.promoImage
-                    img(src="#{data.promoImage}" style="max-width: 100%;height: auto;")
+                a(href="#{emailTemplateData.promoLink}")
+                  if emailTemplateData.promoImage && emailTemplateData.promoImage.length > 0
+                    img(src="#{emailTemplateData.promoImage}" style="max-width: 100%;height: auto;")
                   else
                     img(src="/public/store_credit.png" style="max-width: 100%;height: auto;")
 

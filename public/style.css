@@ -23,7 +23,7 @@ body {
 }
 
 .border-separator {
-  border-bottom: #dfe3e8 1px solid;
+  border-bottom: #dfe3e8 2px solid;
   margin-top: 24px;
 }
 
@@ -33,4 +33,11 @@ body {
 
 .mt-5vh {
   margin-top: 5vh;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  border-bottom: #dfe3e8 1px solid;
+  padding: 8px 0;
 }

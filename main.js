@@ -17,12 +17,13 @@ exports.mailer = mailer;
 exports.db = db;
 exports.service = service;
 
-mailer.send = function (to, subject, body) {
+mailer.send = function (params) {
+  const { to, subject, body, from } = params;
   const mail = new MailHelper.Mail();
   mail.setSubject(subject);
   mail.addContent(new MailHelper.Content('text/html', body));
 
-  let email = new MailHelper.Email(constants.SENDGRID_USERNAME);
+  let email = new MailHelper.Email(from);
   mail.setFrom(email);
 
   const personalization = new MailHelper.Personalization();
