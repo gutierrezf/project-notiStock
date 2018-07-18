@@ -24,6 +24,7 @@ router.post('/notify-request', co(function * (req, res) {
     const localShop = yield provider.db.shop.findByName(shopName);
 
     const emailTemplateData = {
+      domain: provider.constants.SERVER_PUBLIC_URL_ROOT,
       productImage: `https:${formData.imageUrl}`,
       promoLink: localShop.promoLink,
       promoImage: localShop.promoImage,
@@ -51,6 +52,7 @@ router.post('/notify-request', co(function * (req, res) {
 
 router.get('/preview', (req, res) => {
   const emailTemplateData = {
+    domain: provider.constants.SERVER_PUBLIC_URL_ROOT,
     productImage: 'https://cdn.shopify.com/s/files/1/0629/7769/products/70-Times-7--Shirt--Triblend-drk-gray-on-gray_300x.png?v=1529035427',
     promoLink: 'www.google.com',
     promoImage: '',

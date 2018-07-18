@@ -16,6 +16,7 @@ const db = {
 exports.mailer = mailer;
 exports.db = db;
 exports.service = service;
+exports.constants = constants;
 
 mailer.send = function (params) {
   const { to, subject, body, from } = params;
