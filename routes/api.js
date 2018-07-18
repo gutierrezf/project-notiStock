@@ -34,7 +34,7 @@ router.post('/notify-request', co(function * (req, res) {
     const html = jade.compile(emailTemplate, { basedir: __dirname })({ emailTemplateData });
 
     const emailObj = {
-      to: [formData.customerEmail, 'ingutierrez.u@gmail.com'],
+      to: [formData.customerEmail],
       from: 'ghimicelli-restock@service.com',
       subject: 'Restock Notification Request Submited',
       body: html
@@ -42,7 +42,7 @@ router.post('/notify-request', co(function * (req, res) {
 
     provider.mailer.send(emailObj)
       .then(() => {
-        emailObj.to = [localShop.email, 'ingutierrez.u@gmail.com'];
+        emailObj.to = [localShop.email];
         emailObj.from = formData.customerEmail;
         emailObj.subject = emailObj.subject + ' - admin notify';
         return provider.mailer.send(emailObj);
