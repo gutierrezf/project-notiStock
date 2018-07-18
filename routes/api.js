@@ -26,6 +26,7 @@ router.post('/notify-request', co(function * (req, res) {
     const emailTemplateData = {
       domain: provider.constants.SERVER_PUBLIC_URL_ROOT,
       productImage: `https:${formData.imageUrl}`,
+      productName: `${formData.productTitle} - ${formData.variant}`,
       promoLink: localShop.promoLink,
       promoImage: localShop.promoImage,
       storeLogo: localShop.storeLogo,
@@ -36,7 +37,7 @@ router.post('/notify-request', co(function * (req, res) {
     const emailObj = {
       to: [formData.customerEmail],
       from: 'ghimicelli-restock@service.com',
-      subject: 'Restock Notification Request Submited',
+      subject: `Request Submited - ${formData.productTitle} - ${formData.variant}`,
       body: html
     };
 
@@ -44,7 +45,7 @@ router.post('/notify-request', co(function * (req, res) {
       .then(() => {
         emailObj.to = [localShop.email];
         emailObj.from = formData.customerEmail;
-        emailObj.subject = emailObj.subject + ' - admin notify';
+        emailObj.subject = emailObj.subject;
         return provider.mailer.send(emailObj);
       });
   }

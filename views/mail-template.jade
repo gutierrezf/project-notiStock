@@ -26,6 +26,8 @@ html
             else
               img(src="#{emailTemplateData.productImage}" data-src="#{emailTemplateData.productImage}" style="max-width: 100%;height: auto;")
 
+            p=emailTemplateData.productName
+
             div(style='text-align:left;padding-top:30px;')
               if emailTemplateData.promoLink && emailTemplateData.promoLink.length > 0 && !emailTemplateData.reply
                 p In the meantime, while you wait patienly here is a credict store* as a token of our appreciation. Credict Store will spire in 7 days.
