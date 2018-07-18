@@ -9,7 +9,7 @@ html
             if emailTemplateData.storeLogo && emailTemplateData.storeLogo.length > 0
               img(src="#{emailTemplateData.storeLogo}" style="max-width: 100%;height: 64px;")
             else
-              img(src="#{emailTemplateData.domain}public/ghimicelli_store_icon.png" style="max-width: 100%;height: 64px;")
+              img(src="https://ghimicelli-stock-notification.herokuapp.com/public/ghimicelli_store_icon.png" style="max-width: 100%;height: 64px;")
 
           div(style='padding:0 50px;')
             div(style='text-align:left;')
@@ -24,7 +24,7 @@ html
               a(href="#{emailTemplateData.productLink}")
                 img(src="#{emailTemplateData.productImage}" style="max-width: 100%;height: auto;")
             else
-              img(src="#{emailTemplateData.productImage}" style="max-width: 100%;height: auto;")
+              img(src="#{emailTemplateData.productImage}" data-src="#{emailTemplateData.productImage}" style="max-width: 100%;height: auto;")
 
             div(style='text-align:left;padding-top:30px;')
               if emailTemplateData.promoLink && emailTemplateData.promoLink.length > 0 && !emailTemplateData.reply
@@ -34,6 +34,6 @@ html
                   if emailTemplateData.promoImage && emailTemplateData.promoImage.length > 0
                     img(src="#{emailTemplateData.promoImage}" style="max-width: 100%;height: auto;")
                   else
-                    img(src="#{emailTemplateData.domain}public/store_credit.png" style="max-width: 100%;height: auto;")
+                    img(src="https://ghimicelli-stock-notification.herokuapp.com/public/store_credit.png" style="max-width: 100%;height: auto;")
 
             p(style="letter-spacing:5px;padding-top: 30px;") MICHAEL GHIMICELLI
