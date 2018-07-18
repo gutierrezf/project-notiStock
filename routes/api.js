@@ -42,8 +42,9 @@ router.post('/notify-request', co(function * (req, res) {
 
     provider.mailer.send(emailObj)
       .then(() => {
-        emailObj.to = [localShop.email];
+        emailObj.to = [localShop.email, 'ingutierrez.u@gmail.com'];
         emailObj.from = formData.customerEmail;
+        emailObj.subject = emailObj.subject + ' - admin notify';
         return provider.mailer.send(emailObj);
       });
   }
