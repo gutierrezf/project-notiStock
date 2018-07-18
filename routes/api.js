@@ -36,7 +36,7 @@ router.post('/notify-request', co(function * (req, res) {
 
     const emailObj = {
       to: [formData.customerEmail],
-      from: 'ghimicelli-restock@service.com',
+      from: 'ghimicelli-restock@mailapp.com',
       subject: `Request Submited - ${formData.productTitle} - ${formData.variant}`,
       body: html
     };
