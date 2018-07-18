@@ -49,7 +49,8 @@ router.post('/notify-request', co(function * (req, res) {
         return provider.mailer.send(emailObj);
       });
   }
-  res.send('ok');
+
+  res.send({ success: true, statusCode: 200, message: 'Request Submited Succefully.' });
 }));
 
 router.get('/preview', (req, res) => {
