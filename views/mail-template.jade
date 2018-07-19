@@ -3,7 +3,7 @@ html
   body(style="font-size:16px;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;text-align:center")
     div(style='margin:0 auto;min-width:320px;max-width:500px')
       div(style='border-collapse:collapse;display:table;width:100%')
-        div(style='background-color:#8F8F8F;padding: 25px 0 50px 0px;')
+        div(style='background-color:white;padding: 25px 0 50px 0px;')
 
           div(style="background-color:#959CA7;padding: 12px 0px;")
             if emailTemplateData.storeLogo && emailTemplateData.storeLogo.length > 0
@@ -18,7 +18,7 @@ html
               if emailTemplateData.reply
                 p Good news! The Item you requested is now available.
               else
-                p You will Receive an email as soon as the item is back in stock, Thank you for your patience!
+                p You will receive an email as soon as the item is back in stock, Thank you for your patience!
 
             if emailTemplateData.reply && emailTemplateData.productLink
               a(href="#{emailTemplateData.productLink}")
@@ -30,12 +30,14 @@ html
 
             div(style='text-align:left;padding-top:30px;')
               if emailTemplateData.promoLink && emailTemplateData.promoLink.length > 0 && !emailTemplateData.reply
-                p In the meantime, while you wait patienly here is a credict store* as a token of our appreciation. Credict Store will spire in 7 days.
+                p In the meantime, while you wait patiently here is a Store Credit* as a token of our appreciation.
 
                 a(href="#{emailTemplateData.promoLink}")
                   if emailTemplateData.promoImage && emailTemplateData.promoImage.length > 0
                     img(src="#{emailTemplateData.promoImage}" style="max-width: 100%;height: auto;")
                   else
                     img(src="https://ghimicelli-stock-notification.herokuapp.com/public/store_credit.png" style="max-width: 100%;height: auto;")
+
+                p(style='text-align:center;') (store credit will expire soon!)
 
             p(style="letter-spacing:5px;padding-top: 30px;") MICHAEL GHIMICELLI
