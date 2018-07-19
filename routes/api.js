@@ -36,7 +36,7 @@ router.post('/notify-request', co(function * (req, res) {
 
     const emailObj = {
       to: [formData.customerEmail],
-      from: 'ghimicelli-restock@mailapp.com',
+      from: 'restocknotification@ghimicelli.com',
       subject: `Request Submited - ${formData.productTitle} - ${formData.variant}`,
       body: html
     };
@@ -50,7 +50,7 @@ router.post('/notify-request', co(function * (req, res) {
       });
   }
 
-  res.send({ success: true, statusCode: 200, message: 'Request Submited Succefully.' });
+  res.send({ success: true, statusCode: 200 });
 }));
 
 router.get('/preview', (req, res) => {
