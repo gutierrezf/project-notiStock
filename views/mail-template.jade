@@ -21,12 +21,15 @@ html
                 p You will receive an email as soon as the item is back in stock, Thank you for your patience!
 
             if emailTemplateData.reply && emailTemplateData.productLink
-              a(href="#{emailTemplateData.productLink}")
+              a(href="#{emailTemplateData.productLink}" target='_blank')
                 img(src="#{emailTemplateData.productImage}" style="max-width: 100%;height: auto;")
             else
               img(src="#{emailTemplateData.productImage}" data-src="#{emailTemplateData.productImage}" style="max-width: 100%;height: auto;")
 
             p=emailTemplateData.productName
+
+            if emailTemplateData.reply && emailTemplateData.productLink
+              a(href="#{emailTemplateData.productLink}" target='_blank') SHOP NOW!
 
             div(style='text-align:left;padding-top:30px;')
               if emailTemplateData.promoLink && emailTemplateData.promoLink.length > 0 && !emailTemplateData.reply
@@ -35,8 +38,6 @@ html
                 a(href="#{emailTemplateData.promoLink}")
                   if emailTemplateData.promoImage && emailTemplateData.promoImage.length > 0
                     img(src="#{emailTemplateData.promoImage}" style="max-width: 100%;height: auto;")
-                  else
-                    img(src="https://ghimicelli-stock-notification.herokuapp.com/public/store_credit.png" style="max-width: 100%;height: auto;")
 
                 p(style='text-align:center;') (store credit will expire soon!)
 

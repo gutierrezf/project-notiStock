@@ -13,6 +13,7 @@ const RestockSchema = new Schema({
   customerEmail: { type: String, default: '' },
   imageUrl: { type: String, default: '' },
   status: { type: Number, enum: [0, 1, 2], default: 0 },
+  fulfilled_at: { type: Date },
   created_at: { type: Date, default: Date.now }
 });
 

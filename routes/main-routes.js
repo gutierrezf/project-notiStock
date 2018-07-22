@@ -1,13 +1,98 @@
 const express = require('express');
 const co = require('co-express');
 const provider = require('../main');
+const jade = require('jade');
+const fs = require('fs');
+const path = require('path');
+const schedule = require('node-schedule');
 
+const emailTemplate = fs.readFileSync(path.join(__dirname, '/../views/mail-template.jade'), 'utf8');
 const router = express.Router();
 
 router.use((req, res, next) => {
   console.log('Time: ', Date.now());
   console.log(req.originalUrl);
   next();
+});
+
+const notificationSolver = co(function * (){
+  const shopName = 'ghimicelli';
+  const localShop = yield provider.db.shop.findByName(shopName);
+  const requests = yield provider.db.restock.find({ shop: shopName, status: 0 });
+
+  const extractProductIds = (items) => {
+    const ids = {};
+    items.forEach((item) => {
+      ids[item.productID] = 1;
+    });
+    return Object.keys(ids);
+  };
+
+  const productIds = extractProductIds(requests);
+  const filterCallback = product => productIds.includes(`${product.id}`);
+
+  return yield provider.service.getAllShopifyProducts(localShop, filterCallback)
+    .then((products) => {
+      const restockNotifications = [];
+      requests.forEach((restockObj) => {
+        const product = products.find(p => p.id == restockObj.productID);
+        const variant = product.variants.find(v => v.option1 == restockObj.variant);
+
+        if (variant.inventory_quantity > 0) {
+          restockNotifications.push(restockObj);
+        }
+
+      });
+      return restockNotifications;
+    })
+    .then((notifications) => {
+      const promiseArray = notifications.map((notification) => {
+        const productName = `${notification.productTitle} - ${notification.variant}`;
+        console.log(`sending restock email to: ${notification.customerEmail}, for ${productName}`);
+
+        const emailTemplateData = {
+          domain: provider.constants.SERVER_PUBLIC_URL_ROOT,
+          productImage: `https:${notification.imageUrl}`,
+          productName: `${productName}`,
+          productLink: `${notification.productUrl}`,
+          storeLogo: localShop.storeLogo,
+          reply: true
+        };
+
+        const html = jade.compile(emailTemplate, { basedir: __dirname })({ emailTemplateData });
+
+        const emailObj = {
+          to: [notification.customerEmail, localShop.email],
+          from: 'restocknotification@ghimicelli.com',
+          subject: `${productName} is back in stock!`,
+          body: html
+        };
+
+        return provider.mailer.send(emailObj)
+          .then(() => {
+            notification.status = 1;
+            notification.fulfilled_at = Date.now();
+            return provider.db.restock.update(notification);
+          });
+      });
+
+      return Promise.all(promiseArray);
+    });
+});
+
+router.get('/sync', co(function * (req, res) {
+  const data = yield notificationSolver();
+
+  res.json({ data });
+}));
+
+schedule.scheduleJob('* 0 * * *', function() {
+  console.log('schedule job started');
+  console.log('Time: ', Date.now());
+  notificationSolver()
+    .then(()=> {
+      console.log('schedule job finished');
+    });
 });
 
 /****

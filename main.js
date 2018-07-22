@@ -105,6 +105,42 @@ service.getShopifyObject = function (shop) {
     shop: shop.companyName, // MYSHOP.myshopify.com
     shopify_api_key: constants.SHOPIFY_API_KEY, // Your API key
     access_token: shop.accessToken, // Your API password
-    shopify_shared_secret: constants.SHOPIFY_API_SECRET
+    shopify_shared_secret: constants.SHOPIFY_API_SECRET,
+    verbose: false
+  });
+};
+
+service.getAllShopifyProducts = (shop, filter = () => true) => {
+  let allProducts = [];
+  let Shopify = service.getShopifyObject(shop);
+  return getProductPromise(Shopify);
+
+  function getProductPromise(shop, page = 1) {
+    return service.getProducts(shop, page, 'id,variants')
+      .then((products) => {
+        products = products || [];
+        if (products.length > 0) {
+          allProducts = [...allProducts, ...products.filter(filter)];
+          return getProductPromise(shop, page + 1);
+        } else {
+          console.log(`${allProducts.length} results found`);
+          return allProducts;
+        }
+      });
+  }
+};
+
+service.getProducts = function (Shopify, page = 1, fields = '') {
+  let url = `/admin/products.json?limit=240&published_status=published&page=${page}&fields=${fields}`;
+  console.log(`fetching: ${url}`);
+
+  return new Promise((success, reject) => {
+    Shopify.get(url, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        success(data.products);
+      }
+    });
   });
 };
