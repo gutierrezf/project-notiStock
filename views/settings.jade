@@ -1,7 +1,7 @@
 extends template
 
-block headerBar
-  include header/settings
+//- block headerBar
+//-   include header/settings
 
 block content
   .container
@@ -31,7 +31,7 @@ block content
         .form-group
           label(for="replyP1") Paragraph 1
           p First paragraph. This goes right after the logo.
-          textarea.form-control(type="textarea" name="replyP1" value=settings.replyP1)
+          textarea.form-control(type="textarea" name="replyP1")= settings.replyP1
 
         .form-group
           .text-bold.text-center Product Image
@@ -39,7 +39,7 @@ block content
         .form-group
           label(for="replyP2") Paragraph 2
           p Second paragraph. This goes right after the product image. This Image will be shown only, if a promo Link exist.
-          textarea.form-control(type="textarea" name="replyP2" value=settings.replyP2)
+          textarea.form-control(type="textarea" name="replyP2")= settings.replyP2
 
           label.pt-16(for="promoLink") Promo Link
           p URL where the customer will be directed to get a store credit.
@@ -52,7 +52,7 @@ block content
 
           label.pt-16(for="replyP3") Paragraph 3
           p Third paragraph. This goes right after the promo image. This Image will be shown only, if a promo Link exist.
-          textarea.form-control(type="textarea" name="replyP3" value=settings.replyP3)
+          textarea.form-control(type="textarea" name="replyP3" )= settings.replyP3
 
       .setting-panel#panel-3
         .form-group
@@ -61,7 +61,7 @@ block content
         .form-group
           label(for="notificationP1") Paragraph 1
           p First paragraph. This goes right after the logo.
-          textarea.form-control(type="textarea" name="notificationP1" value=settings.notificationP1)
+          textarea.form-control(type="textarea" name="notificationP1")= settings.notificationP1
 
         .form-group
           .text-bold.text-center Product Image
@@ -69,4 +69,4 @@ block content
         .form-group
           label(for="notificationP2") Paragraph 2
           p First paragraph. This goes right after the product image.
-          textarea.form-control(type="textarea" name="notificationP2" value=settings.notificationP2)
+          textarea.form-control(type="textarea" name="notificationP2")= settings.notificationP2
