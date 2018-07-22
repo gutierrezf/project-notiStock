@@ -9,6 +9,7 @@ block content
       .form-group
         label(for="email") Admin Email
         p This email will be used to notify the admin when a customer request a notification
+        p Recommended width dimention: 400px
         input.form-control(type="text" name="email" placeholder="Insert your email" value=settings.email)
 
       .form-group
@@ -23,7 +24,7 @@ block content
         input.form-control(type="text" name="promoLink" placeholder="Insert a promo url" value=settings.promoLink)
 
         label(for="promoImage" style="padding-top:16px;") Promo Image URL
-        p This field is used to replace the default promo image. This Image will be shown only, if a promo Link exist.
-          img(src="/public/store_credit.png"  style="max-width: 100%;height: 30px;padding: 0 8px;")
+        p This field is used to add the promo image. This Image will be shown only, if a promo Link exist.
+        p Recommended width dimention: 400px
         input.form-control(type="text" name="promoImage" placeholder="Insert a promo image url" value=settings.promoImage)
 
