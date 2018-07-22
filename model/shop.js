@@ -19,6 +19,11 @@ const shopSchema = new Schema({
   promoLink: { type: String, default: '' },
   promoImage: { type: String, default: '' },
   uninstalledAt: Date,
+  replyP1: { type: String, default: '' },
+  replyP2: { type: String, default: '' },
+  replyP3: { type: String, default: '' },
+  notificationP1: { type: String, default: '' },
+  notificationP2: { type: String, default: '' },
   created_at: { type: Date, default: Date.now }
 });
 

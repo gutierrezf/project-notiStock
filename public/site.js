@@ -14,7 +14,7 @@ function saveSettings() {
     shopName: shop
   };
 
-  $('form.settings-form input').toArray().forEach(function(el) {
+  $('form.settings-form .form-control').toArray().forEach(function(el) {
     var name = $(el).attr('name');
     var val = $(el).val();
     formData[name] = val;
@@ -34,3 +34,15 @@ function saveSettings() {
     }
   });
 }
+
+$(function(){
+  $('.setting-tabs .tab').on('click', function(){
+    $('.setting-tabs .tab').removeClass('active');
+    $('.setting-panel').removeClass('active');
+
+    var target = $(this).data('target');
+    $(this).addClass('active');
+    $(target).addClass('active');
+  });
+
+});
