@@ -26,15 +26,17 @@ router.post('/notify-request', co(function * (req, res) {
     const localShop = yield provider.db.shop.findByName(shopName);
 
     const emailTemplateData = {
-      domain: provider.constants.SERVER_PUBLIC_URL_ROOT,
       productImage: `https:${formData.imageUrl}`,
       productName: `${formData.productTitle} - ${formData.variant}`,
       promoLink: localShop.promoLink,
       promoImage: localShop.promoImage,
       storeLogo: localShop.storeLogo,
+      replyP1: localShop.replyP1,
+      replyP2: localShop.replyP2,
+      replyP3: localShop.replyP3
     };
 
-    const html = jade.compile(emailTemplate, { basedir: __dirname })({ emailTemplateData });
+    const html = jade.compile(confirmEmailTemplate, { basedir: __dirname })({ emailTemplateData });
 
     const emailObj = {
       to: [formData.customerEmail],

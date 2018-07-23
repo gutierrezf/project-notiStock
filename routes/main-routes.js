@@ -6,7 +6,8 @@ const fs = require('fs');
 const path = require('path');
 const schedule = require('node-schedule');
 
-const emailTemplate = fs.readFileSync(path.join(__dirname, '/../views/mail-template.jade'), 'utf8');
+const notificationEmailTemplate = fs.readFileSync(path.join(__dirname, '/../views/notification-mail-template.jade'), 'utf8');
+
 const router = express.Router();
 
 router.use((req, res, next) => {
@@ -51,15 +52,15 @@ const notificationSolver = co(function * (){
         console.log(`sending restock email to: ${notification.customerEmail}, for ${productName}`);
 
         const emailTemplateData = {
-          domain: provider.constants.SERVER_PUBLIC_URL_ROOT,
           productImage: `https:${notification.imageUrl}`,
           productName: `${productName}`,
           productLink: `${notification.productUrl}`,
           storeLogo: localShop.storeLogo,
-          reply: true
+          notificationP1: localShop.notificationP1,
+          notificationP2: localShop.notificationP2,
         };
 
-        const html = jade.compile(emailTemplate, { basedir: __dirname })({ emailTemplateData });
+        const html = jade.compile(notificationEmailTemplate, { basedir: __dirname })({ emailTemplateData });
 
         const emailObj = {
           to: [notification.customerEmail, localShop.email],
