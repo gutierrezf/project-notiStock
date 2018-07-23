@@ -1,7 +1,7 @@
 extends template
 
-block headerBar
-  include header/settings
+//- block headerBar
+//-   include header/settings
 
 block content
   .container
@@ -58,7 +58,7 @@ block content
           textarea.form-control(type="textarea" name="replyP3" )= settings.replyP3
 
       .setting-panel#panel-3
-         div.mb-12
+        div.mb-12
           a.btn(href='/api/preview-notification?shop=#{shopName}' target='_blank') Preview Notification Template
 
         .form-group
