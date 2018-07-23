@@ -45,4 +45,15 @@ $(function(){
     $(target).addClass('active');
   });
 
+  $('a.sync').on('click', function(){
+    console.log('ahhshahds')
+
+    $.ajax({
+      url: '/sync',
+      type: "post",
+    });
+
+    ShopifyApp.flashNotice("Sync in progress");
+  });
+
 });

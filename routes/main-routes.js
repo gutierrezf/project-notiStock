@@ -81,11 +81,11 @@ const notificationSolver = co(function * (){
     });
 });
 
-router.get('/sync', co(function * (req, res) {
-  const data = yield notificationSolver();
+router.post('/sync', (req, res) => {
+  notificationSolver();
 
-  res.json({ data });
-}));
+  res.send({ success: true, statusCode: 200 });
+});
 
 schedule.scheduleJob('* 0 * * *', function() {
   console.log('schedule job started');
