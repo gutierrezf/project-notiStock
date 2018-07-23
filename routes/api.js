@@ -47,6 +47,8 @@ router.post('/notify-request', co(function * (req, res) {
 
     provider.mailer.send(emailObj)
       .then(() => {
+        if (localShop.email.length <= 0) return true;
+
         emailObj.to = [localShop.email];
         emailObj.from = formData.customerEmail;
         emailObj.subject = emailObj.subject;
