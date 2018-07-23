@@ -7,7 +7,7 @@ block content
   .container
     .setting-tabs
       .tab.active(data-target='#panel-1') General Settings
-      .tab(data-target='#panel-2') Reply Template
+      .tab(data-target='#panel-2') Confirmation Template
       .tab(data-target='#panel-3') Notfication Template
     form.settings-form
 
@@ -25,6 +25,9 @@ block content
           input.form-control(type="text" name="storeLogo" placeholder="Insert a logo url" value=settings.storeLogo)
 
       .setting-panel#panel-2
+        div.mb-12
+          a.btn(href='/api/preview-confirmation?shop=#{shopName}' target='_blank') Preview Confirmation Template
+
         .form-group
           .text-bold.text-center Store Logo
 
@@ -55,6 +58,9 @@ block content
           textarea.form-control(type="textarea" name="replyP3" )= settings.replyP3
 
       .setting-panel#panel-3
+         div.mb-12
+          a.btn(href='/api/preview-notification?shop=#{shopName}' target='_blank') Preview Notification Template
+
         .form-group
           .text-bold.text-center Store Logo
 

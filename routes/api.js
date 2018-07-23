@@ -7,6 +7,8 @@ const path = require('path');
 
 const router = express.Router();
 const emailTemplate = fs.readFileSync(path.join(__dirname, '/../views/mail-template.jade'), 'utf8');
+const confirmEmailTemplate = fs.readFileSync(path.join(__dirname, '/../views/replay-mail-template.jade'), 'utf8');
+const notificationEmailTemplate = fs.readFileSync(path.join(__dirname, '/../views/notification-mail-template.jade'), 'utf8');
 
 router.post('/notify-request', co(function * (req, res) {
   const formData = req.body;
@@ -64,17 +66,45 @@ router.get('/preview', (req, res) => {
 
   const html = jade.compile(emailTemplate, { basedir: __dirname })({ emailTemplateData });
 
-  // const emailObj = {
-  //   to: ['ingutierrez.u@gmail.com'],
-  //   from: 'ghimicelli-restock@service.com',
-  //   subject: 'Restock Notification Request Submited - preview',
-  //   body: html
-  // };
-
-  // provider.mailer.send(emailObj.to, emailObj.subject, emailObj.body);
-
-
   res.send(html);
 });
+
+router.get('/preview-confirmation', co(function * (req, res) {
+  const shopName = req.query.shop.split('.')[0];
+  const shop = yield provider.db.shop.findByName(shopName);
+
+  const emailTemplateData = {
+    storeLogo: shop.storeLogo,
+    productImage: 'https://cdn.shopify.com/s/files/1/0629/7769/products/70-Times-7--Shirt--Triblend-drk-gray-on-gray_300x.png?v=1529035427',
+    promoLink: shop.productLink,
+    promoImage: shop.promoImage,
+    replyP1: shop.replyP1,
+    replyP2: shop.replyP2,
+    replyP3: shop.replyP3,
+    productName: 'product name - variant'
+  };
+
+  const html = jade.compile(confirmEmailTemplate, { basedir: __dirname })({ emailTemplateData });
+
+  res.send(html);
+}));
+
+router.get('/preview-notification', co(function * (req, res) {
+  const shopName = req.query.shop.split('.')[0];
+  const shop = yield provider.db.shop.findByName(shopName);
+
+  const emailTemplateData = {
+    storeLogo: shop.storeLogo,
+    productImage: 'https://cdn.shopify.com/s/files/1/0629/7769/products/70-Times-7--Shirt--Triblend-drk-gray-on-gray_300x.png?v=1529035427',
+    notificationP1: shop.notificationP1,
+    notificationP2: shop.notificationP2,
+    productName: 'product name - variant',
+    productLink: 'https://www.ghimicelli.com/products/anthologie-black-wy'
+  };
+
+  const html = jade.compile(notificationEmailTemplate, { basedir: __dirname })({ emailTemplateData });
+
+  res.send(html);
+}));
 
 module.exports = router;

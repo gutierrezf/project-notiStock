@@ -35,6 +35,10 @@ body {
   margin-top: 5vh;
 }
 
+.mb-12 {
+  margin-bottom: 12px;
+}
+
 .pt-16 {
   padding-top: 16px;
 }
@@ -70,4 +74,17 @@ body {
 .setting-tabs .tab.active {
   border-bottom: #3f4eae 2px solid;
   font-weight: 600;
+}
+
+a.btn {
+  text-decoration: none;
+  color: white;
+  background: #3f4eae;
+  padding: 13px 12px;
+  border-radius: 5px;
+}
+
+a.btn:hover {
+  background: #38469c;
+  color: white;
 }
