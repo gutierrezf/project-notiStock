@@ -1,0 +1,31 @@
+html
+  head
+  body(style="font-size:16px;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;text-align:center")
+    div(style='margin:0 auto;min-width:320px;max-width:500px')
+      div(style='border-collapse:collapse;display:table;width:100%;border:1px solid #ccc;')
+        div(style='background-color:white;padding: 25px 0 50px 0px;')
+
+          div(style="padding: 12px 0px;")
+            if emailTemplateData.storeLogo && emailTemplateData.storeLogo.length > 0
+              img(src="#{emailTemplateData.storeLogo}" style="max-width: 100%;height: 64px;")
+            else
+              img(src="https://ghimicelli-stock-notification.herokuapp.com/public/ghimicelli_store_icon.png" style="max-width: 100%;height: 64px;")
+
+          div(style='padding:0 50px;')
+            p(style='text-align:left;')!= emailTemplateData.replyP1
+
+            img(src="#{emailTemplateData.productImage}" style="max-width: 100%;height: auto;")
+
+            p= emailTemplateData.productName
+
+            div(style='text-align:left;padding-top:30px;')
+              if emailTemplateData.promoLink && emailTemplateData.promoLink.length > 0
+                p!= emailTemplateData.replyP2
+
+                a(href="#{emailTemplateData.promoLink}")
+                  if emailTemplateData.promoImage && emailTemplateData.promoImage.length > 0
+                    img(src="#{emailTemplateData.promoImage}" style="max-width: 100%;height: auto;")
+
+                p(style='text-align:center;')!= emailTemplateData.replyP3
+
+            p(style="letter-spacing:5px;padding-top: 30px;") MICHAEL GHIMICELLI
