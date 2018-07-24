@@ -80,7 +80,7 @@ router.get('/preview-confirmation', co(function * (req, res) {
   const emailTemplateData = {
     storeLogo: shop.storeLogo,
     productImage: 'https://cdn.shopify.com/s/files/1/0629/7769/products/70-Times-7--Shirt--Triblend-drk-gray-on-gray_300x.png?v=1529035427',
-    promoLink: shop.productLink,
+    promoLink: shop.promoLink,
     promoImage: shop.promoImage,
     replyP1: shop.replyP1,
     replyP2: shop.replyP2,
